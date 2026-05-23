@@ -1,0 +1,9 @@
+stages:
+load_data:
+cmd: python -c "from src.data_loader import InsuranceDataLoader; loader = InsuranceDataLoader(); loader.load_data()"
+deps:
+
+    src/data_loader.py
+    outs:
+
+    data/processed_data.parquet
