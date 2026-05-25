@@ -49,3 +49,102 @@ Key Metrics
 Team
 
 Marketing Analytics Team, AlphaCare Insurance Solutions
+## Data Version Control (DVC) Pipeline
+
+This project uses DVC for reproducible data versioning. Below are instructions to reproduce the data pipeline.
+
+### Prerequisites
+
+pip install dvc pandas numpy
+Setup
+
+1. Clone the repository:
+
+    git clone <repository-url>
+    cd <project-directory>
+
+2. Pull DVC-tracked data:
+
+dvc pull
+
+Data Versions
+Version	       Description	                            Location
+v1.0	  Raw insurance data	                data/raw/insurance_data.csv
+v2.0	 Cleaned data with basic features	    data/processed/insurance_data_cleaned.csv
+v3.0	 Enhanced data with additional derived features	data/processed/insurance_data_cleaned_v2.csv
+Reproducing the Pipeline
+
+To reproduce the entire data pipeline from raw data:
+
+# Run the cleaning pipeline
+dvc repro
+
+# Or manually run the cleaning script
+python scripts/clean_data.py
+
+# Generate second version
+python scripts/create_second_version.py
+Data Lineage
+
+The data pipeline consists of:
+
+    Raw Data (data/raw/insurance_data.csv): Original insurance dataset
+
+    Clean Stage (scripts/clean_data.py):
+
+        Converts date types
+
+        Creates derived features (ClaimRatio, RiskCategory, IncomeGroup)
+
+        Handles missing values
+
+    Enhanced Stage (scripts/create_second_version.py):
+
+        Adds PremiumPerRisk ratio
+
+        Creates age groups and NCD categories
+
+        Adds claim severity classification
+
+Switching Between Versions
+
+To switch to a specific data version:
+bash
+
+# Checkout a specific version
+git checkout v2.0
+
+# Pull corresponding data
+dvc pull
+
+Remote Storage
+
+Data is stored in a local DVC remote at /path/to/local/storage/. To push new versions:
+bash
+
+dvc push
+
+To pull latest versions:
+bash
+
+dvc pull
+
+text
+
+
+## Step 8: Complete the Workflow
+
+```bash
+# Stage all changes
+git add .
+git commit -m "Complete DVC setup with two data versions"
+
+# Push to remote
+git push origin task-2
+
+# Create Pull Request to merge into main
+# (This would be done via GitHub/GitLab UI)
+
+# After PR approval, merge and update local main
+git checkout main
+git pull origin main
