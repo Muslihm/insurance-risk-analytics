@@ -1,9 +1,15 @@
 stages:
-load_data:
-cmd: python -c "from src.data_loader import InsuranceDataLoader; loader = InsuranceDataLoader(); loader.load_data()"
-deps:
-
-    src/data_loader.py
+  clean:
+    cmd: python scripts/clean_data.py
+    deps:
+      - data/raw/insurance_data.csv
+      - scripts/clean_data.py
     outs:
-
-    data/processed_data.parquet
+      - data/processed/insurance_data_cleaned.csv
+  enhance:
+    cmd: python scripts/create_second_version.py
+    deps:
+      - data/processed/insurance_data_cleaned.csv
+      - scripts/create_second_version.py
+    outs:
+      - data/processed/insurance_data_enhanced.csv
