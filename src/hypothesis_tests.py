@@ -354,21 +354,15 @@ def run_all_hypothesis_tests(df):
     if len(top_zips) >= 2:
         tester.test_margin('ZipCode', top_zips[0], top_zips[1],
                           f"H₀: No margin difference between Zip {top_zips[0]} and {top_zips[1]}")
-    
     # Hypothesis 4: Gender risk differences
-    print("\n📊 Testing H₀: No risk difference between Women and Men - hypothesis_tests.py:359")
+    print("\n📊 Testing H₀: No risk difference between Women and Men - hypothesis_tests.py:358")
     print("" * 40)
-    tester.test_claim_frequency('Gender', 'Male', 'Female',
-                                 "H₀: No risk difference between Male and Female")
-    tester.test_claim_severity('Gender', 'Male', 'Female',
-                               "H₀: No severity difference between Male and Female")
-    
+    tester.test_claim_frequency('Gender', 'Male', 'Female',"H₀: No risk difference between Male and Female")
+    tester.test_claim_severity('Gender', 'Male', 'Female',"H₀: No severity difference between Male and Female")
     return tester
-
-
 if __name__ == "__main__":
     # Test the module
-    print("Hypothesis Testing Module Loaded Successfully - hypothesis_tests.py:371")
-    print("Available functions: - hypothesis_tests.py:372")
-    print("HypothesisTester(df, alpha=0.05) - hypothesis_tests.py:373")
-    print("run_all_hypothesis_tests(df) - hypothesis_tests.py:374")
+    print("Hypothesis Testing Module Loaded Successfully - hypothesis_tests.py:365")
+    print("Available functions: - hypothesis_tests.py:366")
+    print("HypothesisTester(df, alpha=0.05) - hypothesis_tests.py:367")
+    print("run_all_hypothesis_tests(df) - hypothesis_tests.py:368")
